@@ -13,16 +13,6 @@ var net = require("net"),
 // can set this to true to enable for all connections
 exports.debug_mode = false;
 
-// hiredis might not be installed
-try {
-    require("./lib/parser/hiredis");
-    parsers.push(require("./lib/parser/hiredis"));
-} catch (err) {
-    if (exports.debug_mode) {
-        console.warn("hiredis parser not installed.");
-    }
-}
-
 parsers.push(require("./lib/parser/javascript"));
 
 function RedisClient(stream, options) {
